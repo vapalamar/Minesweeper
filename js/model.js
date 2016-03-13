@@ -3,102 +3,130 @@ var Field = (function () {
   var MINE = -1;
   var EMPTY = 0;
 
-  function Field (width, height, minesAmount) {
+  var cells = [];
+  var width = 0;
+  var height = 0;
+  var minesAmount = 0;
 
-    this.width = width || 9;
-    this.height = height || this.width;
-    this.minesAmount = minesAmount || 14;
-    this.cells = [];
+  function Field (w, h, minesNum) {
+
+    width = w || 9;
+    height = h || width;
+    minesAmount = minesNum || 14;
+
+    this.generate().createMines().createTips();
 
   };
 
   Field.prototype.generate = function generateF () {
 
-    for (var i = 0; i < this.height; i++) {
-      this.cells[i] = [];
+    for (var i = 0; i < height; i++) {
+      cells[i] = [];
 
-      for (var j = 0; j < this.width; j++) {
-        this.cells[i][j] = EMPTY;
+      for (var j = 0; j < width; j++) {
+        cells[i][j] = EMPTY;
       }
     }
+
+    return this;
 
   };
 
   Field.prototype.createMines = function createMinesF () {
 
     var i = 0;
-    while (i < this.minesAmount) {
+    while (i < minesAmount) {
 
-      var x = Math.floor(Math.random() * this.width);
-      var y = Math.floor(Math.random() * this.height);
+      var x = Math.floor(Math.random() * width);
+      var y = Math.floor(Math.random() * height);
 
-      if (this.cells[y][x] !== MINE) {
+      if (cells[y][x] !== MINE) {
 
-        this.cells[y][x] = MINE;
+        cells[y][x] = MINE;
         i++;
 
       }
     }
 
+    return this;
+
   };
 
   Field.prototype.createTips = function createTipsF () {
 
-    for (var i = 0; i < this.height; i++) {
+    for (var i = 0; i < height; i++) {
 
-      for (var j = 0; j < this.width; j++) {
+      for (var j = 0; j < width; j++) {
 
-        if (this.cells[i][j] === MINE) {
+        if (cells[i][j] === MINE) {
           continue;
         }
 
         var mineCounter = 0;
 
-        if (this.cells[i][j - 1] && this.cells[i][j - 1] === MINE) {
+        if (cells[i][j - 1] && cells[i][j - 1] === MINE) {
           mineCounter++;
         }
 
-        if (this.cells[i][j + 1] && this.cells[i][j + 1] === MINE) {
+        if (cells[i][j + 1] && cells[i][j + 1] === MINE) {
           mineCounter++;
         }
 
-        if (this.cells[i - 1] && this.cells[i - 1][j] === MINE) {
+        if (cells[i - 1] && cells[i - 1][j] === MINE) {
           mineCounter++;
         }
 
-        if (this.cells[i + 1] && this.cells[i + 1][j] === MINE) {
+        if (cells[i + 1] && cells[i + 1][j] === MINE) {
           mineCounter++;
         }
 
-        if (this.cells[i - 1] && this.cells[i - 1][j - 1]
-          && this.cells[i - 1][j - 1] === MINE) {
-
-          mineCounter++;
-        }
-
-        if (this.cells[i - 1] && this.cells[i - 1][j + 1]
-          && this.cells[i - 1][j + 1] === MINE) {
+        if (cells[i - 1] && cells[i - 1][j - 1]
+          && cells[i - 1][j - 1] === MINE) {
 
           mineCounter++;
         }
 
-        if (this.cells[i + 1] && this.cells[i + 1][j + 1] &&
-          this.cells[i + 1][j + 1] === MINE) {
+        if (cells[i - 1] && cells[i - 1][j + 1]
+          && cells[i - 1][j + 1] === MINE) {
 
           mineCounter++;
         }
 
-        if (this.cells[i + 1] && this.cells[i + 1][j - 1] &&
-          this.cells[i + 1][j - 1] === MINE) {
+        if (cells[i + 1] && cells[i + 1][j + 1] &&
+          cells[i + 1][j + 1] === MINE) {
 
           mineCounter++;
         }
 
-        this.cells[i][j] = mineCounter;
+        if (cells[i + 1] && cells[i + 1][j - 1] &&
+          cells[i + 1][j - 1] === MINE) {
+
+          mineCounter++;
+        }
+
+        cells[i][j] = mineCounter;
       }
     }
 
+    return this;
+
   };
+
+  Field.prototype.getCells = function getCellsF () {
+    return cells;
+  }
+
+  Field.prototype.getWidth = function getWidthF () {
+    return width;
+  }
+
+  Field.prototype.getHeight = function getHeightF () {
+    return height;
+  }
+
+  Field.prototype.getMinesAmount = function getMinesAmountF () {
+    return minesAmount;
+  }
 
   return Field;
 
