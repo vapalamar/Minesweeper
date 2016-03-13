@@ -44,9 +44,9 @@ var Field = (function () {
 
   Field.prototype.createTips = function createTipsF () {
 
-    for (var i = 1; i < this.height - 1; i++) {
+    for (var i = 0; i < this.height; i++) {
 
-      for (var j = 1; j < this.width - 1; j++) {
+      for (var j = 0; j < this.width; j++) {
 
         if (this.cells[i][j] === MINE) {
           continue;
@@ -54,35 +54,43 @@ var Field = (function () {
 
         var mineCounter = 0;
 
-        if (this.cells[i][j - 1] === MINE) {
+        if (this.cells[i][j - 1] && this.cells[i][j - 1] === MINE) {
           mineCounter++;
         }
 
-        if (this.cells[i][j + 1] === MINE) {
+        if (this.cells[i][j + 1] && this.cells[i][j + 1] === MINE) {
           mineCounter++;
         }
 
-        if (this.cells[i - 1][j] === MINE) {
+        if (this.cells[i - 1] && this.cells[i - 1][j] === MINE) {
           mineCounter++;
         }
 
-        if (this.cells[i + 1][j] === MINE) {
+        if (this.cells[i + 1] && this.cells[i + 1][j] === MINE) {
           mineCounter++;
         }
 
-        if (this.cells[i - 1][j - 1] === MINE) {
+        if (this.cells[i - 1] && this.cells[i - 1][j - 1]
+          && this.cells[i - 1][j - 1] === MINE) {
+
           mineCounter++;
         }
 
-        if (this.cells[i - 1][j + 1] === MINE) {
+        if (this.cells[i - 1] && this.cells[i - 1][j + 1]
+          && this.cells[i - 1][j + 1] === MINE) {
+
           mineCounter++;
         }
 
-        if (this.cells[i + 1][j + 1] === MINE) {
+        if (this.cells[i + 1] && this.cells[i + 1][j + 1] &&
+          this.cells[i + 1][j + 1] === MINE) {
+
           mineCounter++;
         }
 
-        if (this.cells[i + 1][j - 1] === MINE) {
+        if (this.cells[i + 1] && this.cells[i + 1][j - 1] &&
+          this.cells[i + 1][j - 1] === MINE) {
+
           mineCounter++;
         }
 
