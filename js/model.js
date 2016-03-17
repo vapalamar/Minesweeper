@@ -116,6 +116,10 @@ var Field = (function () {
     return cells;
   }
 
+  Field.prototype.getSize = function getSizeF () {
+    return width * height;
+  }
+
   Field.prototype.getWidth = function getWidthF () {
     return width;
   }
@@ -131,6 +135,36 @@ var Field = (function () {
   Field.prototype.getCell = function getCellF (index) {
     return index < width ? cells[0][index] :
     cells[Math.floor(index / height)][index % width];
+  }
+
+  Field.prototype.getCellNeighbours = function getCellNeighboursF (y, x) {
+
+    var neighbours = [];
+
+    var outerLoopStart = y - 1 > 0 ? y - 1 : 0;
+    var innerLoopStart = x - 1 > 0 ? x - 1 : 0;
+    var outerLoopFinish = y + 1 > height - 1 ? height - 1 : y + 1;
+    var innerLoopFinish = x + 1 > width - 1 ? width - 1 : x + 1;
+
+    while (outerLoopStart <= outerLoopFinish) {
+
+      while (innerLoopStart <= innerLoopFinish) {
+        
+        if (!(outerLoopStart === y && innerLoopStart === x)) {
+          neighbours.push({
+            value: cells[outerLoopStart][innerLoopStart],
+            x: innerLoopStart,
+            y: outerLoopStart
+          });
+        }
+        innerLoopStart++;
+      }
+
+      innerLoopStart = x - 1 > 0 ? x - 1 : 0;
+      outerLoopStart++;
+    }
+
+    return neighbours;
   }
 
   return Field;
