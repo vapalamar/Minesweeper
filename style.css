@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: #ffad39
+}
+
+.content {
+  width: 100%;
+  padding-top: 30px;
+  text-align: center;
+  font-family: monospace;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #2980b9;
+  font-style: italic;
+}
+
+#field {
+  display: inline-block;
+  border: 2px solid #2980b9;
+  background: #ecf0f1;
+  border-radius: 5px;
+  padding: 3px;
+}
+
+.cell, .cell p {
+  display: inline-block;
+}
+
+.cell p {
+  visibility: hidden;
+}
+
+.cell {
+  border: 2px solid #2980b9;
+  text-align: center;
+  margin: 1px;
+  width: 20px;
+  height: 20px;
+}
