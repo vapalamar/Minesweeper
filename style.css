@@ -6,7 +6,7 @@
 html, body {
   height: 100%;
   width: 100%;
-  background: #ffad39
+  background: #ffad39;
 }
 
 .content {
@@ -19,7 +19,7 @@ html, body {
 h1 {
   margin-bottom: 20px;
   color: #2980b9;
-  font-style: italic;
+  font-style: bold;
 }
 
 #field {
@@ -34,8 +34,14 @@ h1 {
   display: inline-block;
 }
 
-.cell p {
+.cell > p{
   visibility: hidden;
+  font-style: bold;
+  font-size: 17px;
+}
+
+p.visible {
+  visibility: visible;
 }
 
 .cell {
@@ -44,4 +50,30 @@ h1 {
   margin: 1px;
   width: 20px;
   height: 20px;
+}
+
+.mine {
+  background: #ff0000;
+}
+
+.empty {
+  background: #ffffff;
+}
+
+#win, #defeat {
+  display: none;
+  text-align: center;
+  width: 50%;
+  margin: 20px auto;
+}
+
+button {
+  text-align: center;
+  display: block;
+  padding: 15px;
+  font-style: bold;
+  font-size: 17px;
+  color: #2980b9;
+  margin: 20px auto;
+  width: 100px;
 }
