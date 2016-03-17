@@ -1,0 +1,22 @@
+{
+  "name": "Minesweeper",
+  "homepage": "https://github.com/iamnongeneric/Minesweeper",
+  "authors": [
+    "Vyacheslav Palamar <vyacheslav.palamar@gmail.com>"
+  ],
+  "description": "Minesweeper game",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^2.4.5"
+  }
+}
