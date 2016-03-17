@@ -14,7 +14,7 @@ var Field = (function () {
     height = h || width;
     minesAmount = minesNum || 14;
 
-    this.generate().createMines().createTips();
+    this.generate();
 
   };
 
@@ -126,6 +126,11 @@ var Field = (function () {
 
   Field.prototype.getMinesAmount = function getMinesAmountF () {
     return minesAmount;
+  }
+
+  Field.prototype.getCell = function getCellF (index) {
+    return index < width ? cells[0][index] :
+    cells[Math.floor(index / height)][index % width];
   }
 
   return Field;
